@@ -1,6 +1,7 @@
-body{background:#222;color: #fff; font-family: "Microsoft YaHei"; padding: 50px;}
+body{background:#222;font-family: "Microsoft YaHei"; padding: 50px;}
 .inputStyle{ height: 28px; line-height: 28px; padding-left: 10px; }
 .buttonStyle { background: peru; color: #fff; width: 80px; height:34px; line-height: 34px; border: 0; margin-left:10px; border-radius: 3px;  }
-ul{ border: solid 1px #ffffff; width:30%; padding:20px; background: #fff;border-radius: 3px; }
-ul li{ line-height: 28px;  }
+label{color: #fff; }
+ul{ border: solid 1px #ffffff; width:30%; padding:20px; background:antiquewhite; border-radius: 3px; }
+ul li{ line-height: 28px; margin-left: 20px;  }
 ul li a{ text-decoration: none; color:#333}

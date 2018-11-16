@@ -1,5 +1,6 @@
 import React, { Component,Fragment } from 'react';
 import  './style.css';
+import TodoItem from './TodoItem';
 
 class TodoList extends Component{
     constructor(props){
@@ -7,7 +8,10 @@ class TodoList extends Component{
         this.state = {
             inputValue : '',
             list : ['好好学习','天天向上'],
-        }
+        };
+        this.handleInputChange = this.handleInputChange.bind(this);
+        this.handleBtnClick = this.handleBtnClick.bind(this);
+        this.handleItemDelete = this.handleItemDelete.bind(this);
     }
     
     render(){
@@ -18,46 +22,57 @@ class TodoList extends Component{
                     id='innerText'
                     className='inputStyle'
                     value={ this.state.inputValue }
-                    onChange={ this.handleInputChange.bind(this) }
+                    onChange={ this.handleInputChange }
                 />
                 <button
                     className='buttonStyle'
-                    onClick={ this.handleBtnClick.bind(this) }
-                > 确 定
+                    onClick={ this.handleBtnClick }> 确 定
                 </button>
                 <ul>
-                    {
-                        this.state.list.map((item,index) => {
-                            return (
-                                <li key={ index } onClick={ this.handleDelClick.bind(this,index)}>
-                                    <a href='#'> —>{ item } .</a>
-                                    {/*
-                                    dangerouslySetInnerHTML 对内容不进行转义，如添加<h1>aaaa</h1> 直接显示带h1标签的样式内容
-                                    <a href='#' dangerouslySetInnerHTML={{__html: item}} ></a>
-                                   */}
-                                </li>
-                            )
-                        })
-                    }
+                    { this.getTodoItem()}
                 </ul>
             </Fragment>
         )
     }
-    handleInputChange(e){
-        this.setState({
-            inputValue : e.target.value,
+    getTodoItem(){
+        return this.state.list.map((item,index) => {
+            return (
+                    <TodoItem
+                        key = {index}
+                        item = {item}
+                        index = {index}
+                        deleteItem = { this.handleItemDelete}
+                    />
+            )
         })
+    }
+    handleInputChange(e){
+        const  value = e.target.value;
+        this.setState(() => ({
+            inputValue :  value
+        }));
+        
+
     }
     handleBtnClick(){
-        this.setState({
-            list : [...this.state.list , this.state.inputValue],
+        this.setState(( prevState)=> ({
+            list : [...prevState.list , prevState.inputValue],
             inputValue : '',
-        })
+        }));
     }
     
-    handleDelClick(index){
-        //react 不允许直接修改state;
-        //对于数组做任何复合类型操作 ，都需要先深层拷贝 ...
+
+    handleItemDelete(index){
+
+        this.setState((prevState) => {
+            const list = [...prevState.list];
+            list.splice(index,1);
+            return {
+                list
+            }
+        })
+        
+        
         const list = [...this.state.list];
         list.splice(index,1);
         this.setState({
