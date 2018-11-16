@@ -43,7 +43,7 @@ class TodoList extends Component{
                         index = {index}
                         deleteItem = { this.handleItemDelete}
                     />
-            )
+                )
         })
     }
     handleInputChange(e){
@@ -51,8 +51,6 @@ class TodoList extends Component{
         this.setState(() => ({
             inputValue :  value
         }));
-        
-
     }
     handleBtnClick(){
         this.setState(( prevState)=> ({
@@ -60,10 +58,7 @@ class TodoList extends Component{
             inputValue : '',
         }));
     }
-    
-
     handleItemDelete(index){
-
         this.setState((prevState) => {
             const list = [...prevState.list];
             list.splice(index,1);
@@ -71,14 +66,6 @@ class TodoList extends Component{
                 list
             }
         })
-        
-        
-        const list = [...this.state.list];
-        list.splice(index,1);
-        this.setState({
-            list : list,
-        })
     }
-    
 }
 export default TodoList;
