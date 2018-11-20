@@ -13,7 +13,7 @@ class TodoList extends Component{
         this.handleBtnClick = this.handleBtnClick.bind(this);
         this.handleItemDelete = this.handleItemDelete.bind(this);
     }
-    
+    // jsx - js对象  - 真实dom
     render(){
         return(
             <Fragment>
@@ -29,7 +29,7 @@ class TodoList extends Component{
                     onClick={ this.handleBtnClick }> 确 定
                 </button>
                 <ul>
-                    { this.getTodoItem()}
+                    { this.getTodoItem() }
                 </ul>
             </Fragment>
         )
@@ -38,7 +38,7 @@ class TodoList extends Component{
         return this.state.list.map((item,index) => {
             return (
                     <TodoItem
-                        key = {index}
+                        key = {item}
                         item = {item}
                         index = {index}
                         deleteItem = { this.handleItemDelete}
@@ -67,5 +67,6 @@ class TodoList extends Component{
             }
         })
     }
+    
 }
 export default TodoList;
